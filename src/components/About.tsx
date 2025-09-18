@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import JavaScriptIcon from '../assets/technologies/JS.png';
 import TypeScriptIcon from '../assets/technologies/TS.png';
 import PHPIcon from '../assets/technologies/PHP.png';
-import JavaIcon from '../assets/technologies/java.png';
+import JavaIcon from '../assets/technologies/JAVA.png';
 import CSharpIcon from '../assets/technologies/CS.png';
 import PythonIcon from '../assets/technologies/PYTHON.png';
 import SQLIcon from '../assets/technologies/SQL.png';
