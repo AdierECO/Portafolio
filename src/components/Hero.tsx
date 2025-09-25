@@ -4,7 +4,7 @@ import ThreeScene from './ThreeScene';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16">
+    <section id="home" className="flex items-center justify-center pt-16 min-h-[calc(100vh-4.3rem)]">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
         <motion.div 
           className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
