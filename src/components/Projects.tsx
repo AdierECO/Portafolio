@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
   
   const projects: Project[] = [
     {
-      id: 0,
+      id: 1,
       title: 'Sistema de Control de Accesos – AIFA',
       description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria. Permite la gestión de usuarios, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar la disponibilidad continua y trazabilidad de la información.',
       image: aifa,
@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
       ]
     },
     {
-      id: 1,
+      id: 2,
       title: 'MAEKA',
       description: 'Aplicación web de comercio electrónico que permite la gestión de productos, usuarios y pedidos dentro de una plataforma centralizada. Incluye funcionalidades administrativas para el control de la información.',
       image: maeka,
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
       ]
     },
     {
-      id: 2,
+      id: 3,
       title: 'EDUSPHERE',
       description: 'Sistema web orientado a la gestión académica y administrativa en instituciones educativas. Facilita la administración de usuarios y el control de información escolar en una plataforma centralizada.',
       image: edusphere,
@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
       ]
     },
     {
-      id: 3,
+      id: 4,
       title: 'CONTAPP',
       description: 'Aplicación web y móvil orientada a la gestión de contenido educativo. Permite la autenticación de usuarios, creación de cuestionarios y administración de información académica mediante una estructura centralizada.',
       image: contapp,
