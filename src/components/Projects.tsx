@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../types';
 
-import maekaImage from '../assets/projects/MAEKA.png';
+import maeka from '../assets/projects/MAEKA.png';
 import edusphere from '../assets/projects/EDUSPHERE.png';
 import contapp from '../assets/projects/CONTAPP.png';
 import aifa from '../assets/projects/AIFA.png';
@@ -16,9 +16,9 @@ const Projects: React.FC = () => {
     {
       id: 0,
       title: 'Sistema de Control de Accesos – AIFA',
-      description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria, desarrollado con arquitectura full stack. Implementa backend en Node.js y Express con base de datos MySQL gestionada mediante Prisma ORM. Incluye autenticación, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar disponibilidad 24/7, integridad de datos y trazabilidad completa.',
+      description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria. Permite la gestión de usuarios, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar la disponibilidad continua y trazabilidad de la información.',
       image: aifa,
-      technologies: ['Node.js', 'Express', 'Prisma', 'MySQL', 'React'],
+      technologies: ['Node.js', 'Express', 'Prisma', 'MySQL', 'React', 'TypeScript'],
       githubUrl: '#',
       links: [
         { type: 'Repositorio', url: 'https://github.com/AdierECO/SIGEA' }
@@ -27,8 +27,8 @@ const Projects: React.FC = () => {
     {
       id: 1,
       title: 'MAEKA',
-      description: 'Aplicación web de comercio electrónico desarrollada con React y Node.js, que permite la gestión de productos, usuarios y pedidos. Incluye conexión a base de datos MySQL y funcionalidades CRUD para la administración del sistema.',
-      image: maekaImage,
+      description: 'Aplicación web de comercio electrónico que permite la gestión de productos, usuarios y pedidos dentro de una plataforma centralizada. Incluye funcionalidades administrativas para el control de la información.',
+      image: maeka,
       technologies: ['React', 'TypeScript', 'Express', 'Node.js', 'MySQL'],
       githubUrl: '#',
       links: [
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: 'EDUSPHERE',
-      description: 'Aplicación web y móvil desarrollada con React y Express, enfocada en la gestión de contenido educativo. Incluye autenticación de usuarios, creación de cuestionarios y manejo de información mediante MySQL y Prisma ORM.',
+      description: 'Sistema web orientado a la gestión académica y administrativa en instituciones educativas. Facilita la administración de usuarios y el control de información escolar en una plataforma centralizada.',
       image: edusphere,
       technologies: ['PHP', 'MySQL', 'HTML', 'JavaScript'],
       githubUrl: '#',
@@ -50,9 +50,9 @@ const Projects: React.FC = () => {
     {
       id: 3,
       title: 'CONTAPP',
-      description: 'Es una aplicación web diseñada para profesores de contabilidad. Les permite compartir publicaciones y recursos educativos con sus alumnos. Los profesores pueden crear cuestionarios, publicar y actualizar sus perfiles de usuario, incluyendo cambiar su nombre de usuario y contraseña.',
+      description: 'Aplicación web y móvil orientada a la gestión de contenido educativo. Permite la autenticación de usuarios, creación de cuestionarios y administración de información académica mediante una estructura centralizada.',
       image: contapp,
-      technologies: ['React', 'React Native', 'Express', 'MySQL', 'PrismaORM'],
+      technologies: ['React', 'React Native', 'Express', 'MySQL', 'Prisma'],
       githubUrl: '#',
       links: [
         { type: 'FrontEnd', url: 'https://github.com/AdierECO/ContApp-web' },
