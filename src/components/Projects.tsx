@@ -16,12 +16,12 @@ const Projects: React.FC = () => {
     {
       id: 1,
       title: 'Sistema de Control de Accesos – AIFA',
-      description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria. Permite la gestión de usuarios, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar la disponibilidad continua y trazabilidad de la información.',
+      description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria. Permite la gestión de usuarios, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar la disponibilidad continua y trazabilidad de la información. El código fuente no es público por motivos de seguridad.',
       image: aifa,
       technologies: ['Node.js', 'Express', 'Prisma', 'MySQL', 'React', 'TypeScript'],
       githubUrl: '#',
       links: [
-        { type: 'Repositorio', url: 'https://github.com/AdierECO/SIGEA' }
+        { type: 'Repositorio', url: '#' }
       ]
     },
     {
