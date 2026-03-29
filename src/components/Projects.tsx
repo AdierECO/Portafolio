@@ -5,6 +5,7 @@ import type { Project } from '../types';
 import maekaImage from '../assets/projects/MAEKA.png';
 import edusphere from '../assets/projects/EDUSPHERE.png';
 import contapp from '../assets/projects/CONTAPP.png';
+import aifa from '../assets/projects/AIFA.png';
 
 
 const Projects: React.FC = () => {
@@ -13,11 +14,22 @@ const Projects: React.FC = () => {
   
   const projects: Project[] = [
     {
+      id: 0,
+      title: 'Sistema de Control de Accesos – AIFA',
+      description: 'Sistema web para el control y registro de accesos en entornos de seguridad aeroportuaria, desarrollado con arquitectura full stack. Implementa backend en Node.js y Express con base de datos MySQL gestionada mediante Prisma ORM. Incluye autenticación, control de roles, registro de accesos y generación de reportes. Diseñado para garantizar disponibilidad 24/7, integridad de datos y trazabilidad completa.',
+      image: aifa,
+      technologies: ['Node.js', 'Express', 'Prisma', 'MySQL', 'React'],
+      githubUrl: '#',
+      links: [
+        { type: 'Repositorio', url: 'https://github.com/AdierECO/SIGEA' }
+      ]
+    },
+    {
       id: 1,
       title: 'MAEKA',
-      description: 'Tienda en Express.js y React para la venta de perfumes, con administración de productos, usuarios y pedidos.',
+      description: 'Aplicación web de comercio electrónico desarrollada con React y Node.js, que permite la gestión de productos, usuarios y pedidos. Incluye conexión a base de datos MySQL y funcionalidades CRUD para la administración del sistema.',
       image: maekaImage,
-      technologies: ['React', 'TypeScript', 'Node.js', 'MySQL'],
+      technologies: ['React', 'TypeScript', 'Express', 'Node.js', 'MySQL'],
       githubUrl: '#',
       links: [
         { type: 'FrontEnd', url: 'https://github.com/AxlEnr/CRUD-React' },
@@ -27,7 +39,7 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: 'EDUSPHERE',
-      description: 'EduSphere es una aplicación web educativa integral diseñada para mejorar la gestión escolar en instituciones de nivel básico y medio superior. Su objetivo principal es digitalizar y optimizar procesos académicos y administrativos, facilitando la comunicación entre docentes, alumnos, padres de familia y directivos.',
+      description: 'Aplicación web y móvil desarrollada con React y Express, enfocada en la gestión de contenido educativo. Incluye autenticación de usuarios, creación de cuestionarios y manejo de información mediante MySQL y Prisma ORM.',
       image: edusphere,
       technologies: ['PHP', 'MySQL', 'HTML', 'JavaScript'],
       githubUrl: '#',
