@@ -26,62 +26,62 @@ const About: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<any>(null);
 
   const certifications = [
-    { 
-      name: 'Python Essentials 1', 
-      issuer: 'Cisco', 
+    {
+      name: 'Python Essentials 1',
+      issuer: 'Cisco',
       year: 'nov. 2024',
       credentialUrl: 'https://www.credly.com/badges/62a30848-88b6-4683-add3-fa8c2c423d05',
       showCredential: true
     },
-    { 
-      name: 'CCNA: Switching, Routing, and Wireless Essentials', 
-      issuer: 'Cisco', 
+    {
+      name: 'CCNA: Switching, Routing, and Wireless Essentials',
+      issuer: 'Cisco',
       year: 'abr. 2024',
       credentialUrl: 'https://www.credly.com/badges/c072c1ef-d945-4cd3-8b02-fb28cbe2092d',
       showCredential: true
     },
-    { 
-      name: 'CCNA: Introduction to Networks', 
-      issuer: 'Cisco', 
+    {
+      name: 'CCNA: Introduction to Networks',
+      issuer: 'Cisco',
       year: 'ago. 2023',
       credentialUrl: 'https://www.credly.com/badges/58e4f516-bd3d-4d99-b954-dad8c739ce5c',
       showCredential: true
     },
-    { 
-      name: 'Desarrollador Front-end', 
-      issuer: 'Capacitate para el Empleo', 
+    {
+      name: 'Desarrollador Front-end',
+      issuer: 'Capacitate para el Empleo',
       year: 'mar. 2025',
       credentialId: 'a0d77b50-9797-4f68-83d1-c9023522df4d',
       credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/a0d77b50-9797-4f68-83d1-c9023522df4d',
       showCredential: true
     },
-    { 
-      name: 'Administrador de bases de datos', 
-      issuer: 'Capacitate para el Empleo', 
+    {
+      name: 'Administrador de bases de datos',
+      issuer: 'Capacitate para el Empleo',
       year: 'jun. 2024',
       credentialId: 'b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
       credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
       showCredential: true
     },
-    { 
-      name: 'Programador en C#', 
-      issuer: 'Capacitate para el Empleo', 
+    {
+      name: 'Programador en C#',
+      issuer: 'Capacitate para el Empleo',
       year: 'jul. 2023',
       credentialId: '3face53e-609b-4e83-beae-771c6a397178',
       credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/3face53e-609b-4e83-beae-771c6a397178',
       showCredential: true
     },
-    { 
-      name: 'Introducción a la programación', 
-      issuer: 'Capacitate para el Empleo', 
+    {
+      name: 'Introducción a la programación',
+      issuer: 'Capacitate para el Empleo',
       year: 'nov. 2022',
       credentialId: '0027b518-415c-484a-999b-03383f857714',
       credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/0027b518-415c-484a-999b-03383f857714',
       showCredential: true
     },
-    { 
-      name: 'Curso de Desarrollo de Apps Móviles', 
-      issuer: 'Google Actívate', 
+    {
+      name: 'Curso de Desarrollo de Apps Móviles',
+      issuer: 'Google Actívate',
       year: 'mar. 2022',
       credentialId: '181543318',
       credentialUrl: 'https://skillshop.exceedlms.com/student/award/nyUNcwm2r8ShePozpdpLgiGt',
@@ -146,7 +146,7 @@ const About: React.FC = () => {
   return (
     <section id="about" className="py-20 bg-slate-800/50">
       <div className="container mx-auto px-4">
-        <motion.h2 
+        <motion.h2
           className="text-3xl md:text-4xl font-bold text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -155,9 +155,9 @@ const About: React.FC = () => {
         >
           Sobre <span className="text-blue-400">mí</span>
         </motion.h2>
-        
+
         <div className="flex flex-col md:flex-row gap-12 mb-20">
-          <motion.div 
+          <motion.div
             className="md:w-2/3"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -165,22 +165,26 @@ const About: React.FC = () => {
             transition={{ duration: 0.7 }}
           >
             <h3 className="text-2xl font-semibold mb-4">Mi trayectoria</h3>
+
             <p className="text-slate-300 mb-6">
-              Soy un estudiante de 21 años de Ingeniería en Sistemas Computacionales en la Universidad Politécnica de Tulancingo, 
-              actualmente cursando mi 10mo cuatrimestre. Además, soy Técnico en Programación con una sólida base en desarrollo 
-              de software y tecnologías modernas.
+              Soy egresado de Ingeniería en Sistemas Computacionales por la Universidad Politécnica de Tulancingo,
+              con formación como Técnico en Programación y experiencia en el desarrollo de aplicaciones web,
+              principalmente en el área de backend.
             </p>
+
             <p className="text-slate-300 mb-6">
-              Me apasiona todo lo relacionado con la tecnología y cómo esta puede mejorar la vida de las personas. Disfruto resolver 
-              problemas, proponer ideas nuevas y trabajar en equipo para lograr cosas útiles y funcionales.
+              Me especializo en el desarrollo de APIs y sistemas para la gestión de información utilizando tecnologías
+              como Node.js, Express y bases de datos relacionales. He trabajado en la implementación de lógica de negocio,
+              control de accesos y soluciones orientadas a entornos reales, priorizando la seguridad y la eficiencia.
             </p>
+
             <p className="text-slate-300">
-              Estoy en busca de una oportunidad donde pueda seguir creciendo, aprender de los demás y aportar lo mejor de mí. 
-              Quiero formar parte de un entorno donde se valore el esfuerzo, la innovación y el deseo de mejorar constantemente.
+              Busco integrarme a un equipo donde pueda seguir creciendo como desarrollador backend, aportar soluciones
+              robustas y escalables, y continuar fortaleciendo mis habilidades en el desarrollo de sistemas.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="md:w-1/3"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -188,12 +192,14 @@ const About: React.FC = () => {
             transition={{ duration: 0.7 }}
           >
             <h3 className="text-2xl font-semibold mb-6">Formación Académica</h3>
+
             <div className="space-y-6">
               <div className="bg-slate-800/50 p-4 rounded-lg">
                 <h4 className="text-blue-400 font-semibold">Ingeniería en Sistemas Computacionales</h4>
                 <p className="text-slate-300">Universidad Politécnica de Tulancingo</p>
-                <p className="text-slate-400 text-sm">10mo cuatrimestre - En curso</p>
+                <p className="text-slate-400 text-sm">Egresado</p>
               </div>
+
               <div className="bg-slate-800/50 p-4 rounded-lg">
                 <h4 className="text-blue-400 font-semibold">Técnico en Programación</h4>
                 <p className="text-slate-300">Centro de Bachillerato Tecnológico Industrial y de Servicio No. 179</p>
@@ -204,7 +210,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Sección de Habilidades Técnicas */}
-        <motion.div 
+        <motion.div
           className="mb-20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -214,7 +220,7 @@ const About: React.FC = () => {
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
             <span className="text-blue-400">Habilidades</span> Técnicas
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
@@ -224,12 +230,12 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   rotateY: 5,
                   boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
                 }}
-                style={{ 
+                style={{
                   transformStyle: 'preserve-3d',
                   perspective: '1000px'
                 }}
@@ -237,7 +243,7 @@ const About: React.FC = () => {
                 <h4 className="text-xl font-semibold text-blue-400 mb-4">{category.title}</h4>
                 <ul className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <motion.li 
+                    <motion.li
                       key={skillIndex}
                       className="text-slate-300 flex items-center p-2 rounded-lg hover:bg-slate-700/50 transition-colors duration-50"
                       initial={{ opacity: 0, x: -10 }}
@@ -246,8 +252,8 @@ const About: React.FC = () => {
                       transition={{ duration: 0.3, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
                     >
                       <div className="w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center mr-3">
-                        <img 
-                          src={skill.icon} 
+                        <img
+                          src={skill.icon}
                           alt={skill.name}
                           className="w-5 h-5 object-contain"
                         />
@@ -262,7 +268,7 @@ const About: React.FC = () => {
         </motion.div>
 
         {/* Sección de Certificaciones */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -271,7 +277,7 @@ const About: React.FC = () => {
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
             Certific<span className="text-blue-400">aciones</span>
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
@@ -281,7 +287,7 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.03,
                   boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.3)"
                 }}
@@ -327,7 +333,7 @@ const About: React.FC = () => {
         {/* Modal para mostrar credenciales */}
         {selectedCertification && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <motion.div 
+            <motion.div
               className="bg-slate-800 rounded-xl p-6 max-w-md w-full border border-slate-700"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -344,7 +350,7 @@ const About: React.FC = () => {
                   </svg>
                 </button>
               </div>
-              
+
               <div className="space-y-3">
                 <p><span className="text-blue-400 font-medium">Emisor:</span> {selectedCertification.issuer}</p>
                 <p><span className="text-blue-400 font-medium">Año:</span> {selectedCertification.year}</p>
