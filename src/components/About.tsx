@@ -21,6 +21,8 @@ import SQLServerIcon from '../assets/technologies/sqlserver.png';
 import MySQLIcon from '../assets/technologies/mysql.png';
 import OracleIcon from '../assets/technologies/Oracle_Cloud.jpg';
 import SupabaseIcon from '../assets/technologies/supabase.png';
+import BitbucketIcon from '../assets/technologies/bitbucket.png';
+import MongoIcon from '../assets/technologies/mongodb.png';
 
 const About: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<any>(null);
@@ -117,8 +119,9 @@ const About: React.FC = () => {
       skills: [
         { name: "SQL Server", icon: SQLServerIcon },
         { name: "MySQL", icon: MySQLIcon },
+        { name: "Mongo", icon: MongoIcon },
         { name: "Oracle Cloud", icon: OracleIcon },
-        { name: "Supabase", icon: SupabaseIcon }
+        { name: "Supabase", icon: SupabaseIcon },
       ]
     },
     {
@@ -126,7 +129,8 @@ const About: React.FC = () => {
       skills: [
         { name: "GitHub", icon: GitHubIcon },
         { name: "Git", icon: GitIcon },
-        { name: "Postman", icon: PostmanIcon }
+        { name: "Postman", icon: PostmanIcon },
+        { name: "Bitbucket", icon: BitbucketIcon }
       ]
     }
   ];
