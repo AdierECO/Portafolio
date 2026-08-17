@@ -101,7 +101,7 @@ export const translations: Record<Language, Translations> = {
       journeyTitle: 'My Journey',
       paragraphs: [
         "I graduated in Computer Systems Engineering from Universidad Politécnica de Tulancingo, with additional training as a Programming Technician and experience developing web applications, mainly focused on the backend.",
-        "I specialize in building APIs and information management systems using technologies like Node.js, Express, and relational databases. I've worked on implementing business logic, access control, and solutions for real-world environments, with a strong focus on security and efficiency.",
+        "I specialize in building APIs and information management systems using technologies like Node.js, Express, and relational databases. I've worked on implementing business logic, access control, and solutions for real-world environments, with a strong focus on security and efficiency. I've also worked with frontend technologies like React, which lets me build complete, end-to-end solutions.",
         "I'm looking to join a team where I can keep growing as a backend developer, contribute robust and scalable solutions, and continue strengthening my skills in systems development.",
       ],
       academicTitle: 'Academic Background',
@@ -215,7 +215,7 @@ export const translations: Record<Language, Translations> = {
       journeyTitle: 'Mi trayectoria',
       paragraphs: [
         'Soy egresado de Ingeniería en Sistemas Computacionales por la Universidad Politécnica de Tulancingo, con formación como Técnico en Programación y experiencia en el desarrollo de aplicaciones web, principalmente en el área de backend.',
-        'Me especializo en el desarrollo de APIs y sistemas para la gestión de información utilizando tecnologías como Node.js, Express y bases de datos relacionales. He trabajado en la implementación de lógica de negocio, control de accesos y soluciones orientadas a entornos reales, priorizando la seguridad y la eficiencia.',
+        'Me especializo en el desarrollo de APIs y sistemas para la gestión de información utilizando tecnologías como Node.js, Express y bases de datos relacionales. He trabajado en la implementación de lógica de negocio, control de accesos y soluciones orientadas a entornos reales, priorizando la seguridad y la eficiencia. También he trabajado con tecnologías de frontend como React, lo que me permite construir soluciones completas de principio a fin.',
         'Busco integrarme a un equipo donde pueda seguir creciendo como desarrollador backend, aportar soluciones robustas y escalables, y continuar fortaleciendo mis habilidades en el desarrollo de sistemas.',
       ],
       academicTitle: 'Formación Académica',
