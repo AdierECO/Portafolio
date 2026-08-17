@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { NavigationItem } from '../types';
+import { useLanguage } from '../context/useLanguage';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { language, toggleLanguage, t } = useLanguage();
 
   const navigationItems: NavigationItem[] = [
-    { name: 'Inicio', href: '/', target: '_self' },
-    { name: 'Sobre mí', href: '/about' },
-    { name: 'Proyectos', href: '/projects' },
-    { name: 'Contacto', href: '/contact' },
+    { name: t.nav.home, href: '/', target: '_self' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.projects, href: '/projects' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
   const handleNavigation = (href: string, target?: string) => {
-    setIsOpen(false); // cerrar menú al navegar
+    setIsOpen(false); // close menu on navigation
     if (target === '_blank') {
       window.open(href, '_blank', 'noopener,noreferrer');
     } else {
-      window.location.href = href;
+      navigate(href);
     }
   };
 
@@ -39,25 +43,42 @@ const Navigation: React.FC = () => {
         </motion.div>
         
         {/* Menu desktop */}
-        <ul className="hidden md:flex space-x-8">
-          {navigationItems.map((item, index) => (
-            <motion.li 
-              key={index} 
-              whileHover={{ scale: 1.1 }} 
-              whileTap={{ scale: 0.95 }}
-            >
-              <button
-                onClick={() => handleNavigation(item.href, item.target)}
-                className="text-slate-400 hover:text-white transition-colors duration-300 bg-transparent border-none cursor-pointer text-base font-medium relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-400 after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+        <div className="hidden md:flex items-center space-x-8">
+          <ul className="flex space-x-8">
+            {navigationItems.map((item, index) => (
+              <motion.li
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {item.name}
-              </button>
-            </motion.li>
-          ))}
-        </ul>
+                <button
+                  onClick={() => handleNavigation(item.href, item.target)}
+                  className="text-slate-400 hover:text-white transition-colors duration-300 bg-transparent border-none cursor-pointer text-base font-medium relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-400 after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item.name}
+                </button>
+              </motion.li>
+            ))}
+          </ul>
+
+          <button
+            onClick={toggleLanguage}
+            aria-label="Switch language"
+            className="text-sm font-semibold text-slate-400 hover:text-white border border-slate-600 hover:border-blue-400 rounded-full px-3 py-1 transition-colors duration-300"
+          >
+            {language === 'en' ? 'ES' : 'EN'}
+          </button>
+        </div>
 
         {/* Botón móvil */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center space-x-4">
+          <button
+            onClick={toggleLanguage}
+            aria-label="Switch language"
+            className="text-sm font-semibold text-slate-400 hover:text-white border border-slate-600 hover:border-blue-400 rounded-full px-3 py-1 transition-colors duration-300"
+          >
+            {language === 'en' ? 'ES' : 'EN'}
+          </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-slate-400 hover:text-white transition-colors duration-300"

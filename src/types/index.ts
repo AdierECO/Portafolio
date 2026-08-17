@@ -1,12 +1,9 @@
 export interface Project {
   id: number;
-  title: string;
-  description: string;
   image: string;
   technologies: string[];
-  githubUrl: string;
   liveUrl?: string;
-  links?: { type: string; url: string }[];
+  links?: { key: string; url: string | null }[];
 }
 
 export interface NavigationItem {

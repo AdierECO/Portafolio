@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
 import type { FormData } from '../types';
+import { useLanguage } from '../context/useLanguage';
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -36,7 +38,7 @@ const Contact: React.FC = () => {
 
       // Validar que las variables existan
       if (!serviceID || !templateID || !userID) {
-        throw new Error('La configuración de EmailJS no está completa. Por favor, verifica las variables de entorno.');
+        throw new Error(t.contact.form.configError);
       }
 
       // Parámetros que coinciden EXACTAMENTE con tu template de EmailJS
@@ -45,7 +47,7 @@ const Contact: React.FC = () => {
         email: formData.email,
         title: formData.subject, // "subject" del form se mapea a "title" para EmailJS
         message: formData.message,
-        time: new Date().toLocaleString('es-MX', {
+        time: new Date().toLocaleString(t.contact.dateLocale, {
           weekday: 'long',
           year: 'numeric',
           month: 'long',
@@ -65,7 +67,7 @@ const Contact: React.FC = () => {
       // Resetear mensaje de éxito después de 5 segundos
       setTimeout(() => setIsSent(false), 5000);
     } catch (err) {
-      setError('Error al enviar el mensaje. Por favor, intenta nuevamente o contacta directamente a adierortix@gmail.com');
+      setError(t.contact.form.errorMessage);
       console.error('Error EmailJS:', err);
     } finally {
       setIsLoading(false);
@@ -82,7 +84,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-blue-400">Cont</span>acto
+          <span className="text-blue-400">{t.contact.heading.highlight}</span>{t.contact.heading.post}
         </motion.h2>
 
         <motion.p
@@ -92,7 +94,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          ¿Tienes un proyecto en mente? ¡Hablemos! Estoy siempre abierto a discutir nuevas oportunidades y colaboraciones.
+          {t.contact.subtitle}
         </motion.p>
 
         <div className="flex flex-col lg:flex-row gap-12">
@@ -103,7 +105,7 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-2xl font-semibold mb-6">Información de contacto</h3>
+            <h3 className="text-2xl font-semibold mb-6">{t.contact.infoTitle}</h3>
 
             <div className="space-y-6">
               <div className="flex items-start">
@@ -113,7 +115,7 @@ const Contact: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-200">Email</h4>
+                  <h4 className="font-semibold text-slate-200">{t.contact.emailLabel}</h4>
                   <p className="text-slate-400">adierortix@gmail.com</p>
                 </div>
               </div>
@@ -126,8 +128,8 @@ const Contact: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-200">Ubicación</h4>
-                  <p className="text-slate-400">Hidalgo, México</p>
+                  <h4 className="font-semibold text-slate-200">{t.contact.locationLabel}</h4>
+                  <p className="text-slate-400">{t.contact.locationValue}</p>
                 </div>
               </div>
 
@@ -138,14 +140,14 @@ const Contact: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-200">Horario</h4>
-                  <p className="text-slate-400">Lunes - Viernes</p>
+                  <h4 className="font-semibold text-slate-200">{t.contact.scheduleLabel}</h4>
+                  <p className="text-slate-400">{t.contact.scheduleValue}</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8">
-              <h4 className="font-semibold text-slate-200 mb-4">Sígueme en</h4>
+              <h4 className="font-semibold text-slate-200 mb-4">{t.contact.followMe}</h4>
               <div className="flex space-x-4">
                 <a href="https://x.com/Adierortix" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-400 transition-colors duration-300">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -186,7 +188,7 @@ const Contact: React.FC = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  ✅ Mensaje enviado correctamente. ¡Te contactaré pronto!
+                  ✅ {t.contact.form.successMessage}
                 </motion.div>
               )}
 
@@ -201,7 +203,7 @@ const Contact: React.FC = () => {
               )}
 
               <div className="mb-6">
-                <label htmlFor="name" className="block text-slate-300 mb-2">Nombre</label>
+                <label htmlFor="name" className="block text-slate-300 mb-2">{t.contact.form.nameLabel}</label>
                 <input
                   type="text"
                   id="name"
@@ -211,12 +213,12 @@ const Contact: React.FC = () => {
                   required
                   disabled={isLoading}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 disabled:opacity-50"
-                  placeholder="Tu nombre completo"
+                  placeholder={t.contact.form.namePlaceholder}
                 />
               </div>
 
               <div className="mb-6">
-                <label htmlFor="email" className="block text-slate-300 mb-2">Email</label>
+                <label htmlFor="email" className="block text-slate-300 mb-2">{t.contact.form.emailLabel}</label>
                 <input
                   type="email"
                   id="email"
@@ -226,12 +228,12 @@ const Contact: React.FC = () => {
                   required
                   disabled={isLoading}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 disabled:opacity-50"
-                  placeholder="tu.email@ejemplo.com"
+                  placeholder={t.contact.form.emailPlaceholder}
                 />
               </div>
 
               <div className="mb-6">
-                <label htmlFor="subject" className="block text-slate-300 mb-2">Asunto</label>
+                <label htmlFor="subject" className="block text-slate-300 mb-2">{t.contact.form.subjectLabel}</label>
                 <input
                   type="text"
                   id="subject"
@@ -241,12 +243,12 @@ const Contact: React.FC = () => {
                   required
                   disabled={isLoading}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 disabled:opacity-50"
-                  placeholder="Asunto del mensaje"
+                  placeholder={t.contact.form.subjectPlaceholder}
                 />
               </div>
 
               <div className="mb-6">
-                <label htmlFor="message" className="block text-slate-300 mb-2">Mensaje</label>
+                <label htmlFor="message" className="block text-slate-300 mb-2">{t.contact.form.messageLabel}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -256,7 +258,7 @@ const Contact: React.FC = () => {
                   disabled={isLoading}
                   rows={5}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 disabled:opacity-50"
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  placeholder={t.contact.form.messagePlaceholder}
                 />
               </div>
 
@@ -273,10 +275,10 @@ const Contact: React.FC = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Enviando...
+                    {t.contact.form.submitLoading}
                   </>
                 ) : (
-                  'Enviar Mensaje'
+                  t.contact.form.submitIdle
                 )}
               </motion.button>
             </form>

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import type { IconType } from 'react-icons';
+import { SiAngular, SiHtml5, SiBootstrap, SiTailwindcss, SiGnubash, SiFlutter, SiDart } from 'react-icons/si';
+import { useLanguage } from '../context/useLanguage';
 
 // Importar imágenes (asegúrate de tener estas imágenes en tu carpeta src/assets/)
 import JavaScriptIcon from '../assets/technologies/JS.png';
@@ -24,122 +27,136 @@ import SupabaseIcon from '../assets/technologies/supabase.png';
 import BitbucketIcon from '../assets/technologies/bitbucket.png';
 import MongoIcon from '../assets/technologies/mongodb.png';
 
+interface CertificationBase {
+  issuer: string;
+  year: string;
+  credentialId?: string;
+  credentialUrl: string;
+  showCredential: boolean;
+}
+
+const certifications: CertificationBase[] = [
+  {
+    issuer: 'Cisco',
+    year: 'Nov 2024',
+    credentialUrl: 'https://www.credly.com/badges/62a30848-88b6-4683-add3-fa8c2c423d05',
+    showCredential: true
+  },
+  {
+    issuer: 'Cisco',
+    year: 'Apr 2024',
+    credentialUrl: 'https://www.credly.com/badges/c072c1ef-d945-4cd3-8b02-fb28cbe2092d',
+    showCredential: true
+  },
+  {
+    issuer: 'Cisco',
+    year: 'Aug 2023',
+    credentialUrl: 'https://www.credly.com/badges/58e4f516-bd3d-4d99-b954-dad8c739ce5c',
+    showCredential: true
+  },
+  {
+    issuer: 'Capacítate para el Empleo',
+    year: 'Mar 2025',
+    credentialId: 'a0d77b50-9797-4f68-83d1-c9023522df4d',
+    credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/a0d77b50-9797-4f68-83d1-c9023522df4d',
+    showCredential: true
+  },
+  {
+    issuer: 'Capacítate para el Empleo',
+    year: 'Jun 2024',
+    credentialId: 'b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
+    credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
+    showCredential: true
+  },
+  {
+    issuer: 'Capacítate para el Empleo',
+    year: 'Jul 2023',
+    credentialId: '3face53e-609b-4e83-beae-771c6a397178',
+    credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/3face53e-609b-4e83-beae-771c6a397178',
+    showCredential: true
+  },
+  {
+    issuer: 'Capacítate para el Empleo',
+    year: 'Nov 2022',
+    credentialId: '0027b518-415c-484a-999b-03383f857714',
+    credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/0027b518-415c-484a-999b-03383f857714',
+    showCredential: true
+  },
+  {
+    issuer: 'Google Actívate',
+    year: 'Mar 2022',
+    credentialId: '181543318',
+    credentialUrl: 'https://skillshop.exceedlms.com/student/award/nyUNcwm2r8ShePozpdpLgiGt',
+    showCredential: true
+  },
+];
+
+interface Skill {
+  name: string;
+  icon: string | IconType;
+  color?: string;
+}
+
+const skillCategories: { skills: Skill[] }[] = [
+  {
+    skills: [
+      { name: "React", icon: ReactIcon },
+      { name: "Angular", icon: SiAngular, color: "#DD0031" },
+      { name: "JavaScript", icon: JavaScriptIcon },
+      { name: "TypeScript", icon: TypeScriptIcon },
+      { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
+      { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8" },
+    ]
+  },
+  {
+    skills: [
+      { name: "React Native", icon: ReactNativeIcon },
+      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+      { name: "Dart", icon: SiDart, color: "#0175C2" },
+    ]
+  },
+  {
+    skills: [
+      { name: "Node.js", icon: NodeIcon },
+      { name: "Express", icon: ExpressIcon },
+      { name: "Prisma", icon: PrismaIcon },
+      { name: "PHP", icon: PHPIcon },
+      { name: "Java", icon: JavaIcon },
+      { name: "C#", icon: CSharpIcon },
+      { name: "Python", icon: PythonIcon },
+    ]
+  },
+  {
+    skills: [
+      { name: "SQL", icon: SQLIcon },
+      { name: "SQL Server", icon: SQLServerIcon },
+      { name: "MySQL", icon: MySQLIcon },
+      { name: "Mongo", icon: MongoIcon },
+      { name: "Oracle Cloud", icon: OracleIcon },
+      { name: "Supabase", icon: SupabaseIcon },
+    ]
+  },
+  {
+    skills: [
+      { name: "Git", icon: GitIcon },
+      { name: "GitHub", icon: GitHubIcon },
+      { name: "Bitbucket", icon: BitbucketIcon },
+      { name: "Postman", icon: PostmanIcon },
+      { name: "Bash", icon: SiGnubash, color: "#4EAA25" },
+    ]
+  }
+];
+
 const About: React.FC = () => {
-  const [selectedCertification, setSelectedCertification] = useState<any>(null);
+  const { t } = useLanguage();
+  const [selectedCertification, setSelectedCertification] = useState<(CertificationBase & { name: string }) | null>(null);
 
-  const certifications = [
-    {
-      name: 'Python Essentials 1',
-      issuer: 'Cisco',
-      year: 'nov. 2024',
-      credentialUrl: 'https://www.credly.com/badges/62a30848-88b6-4683-add3-fa8c2c423d05',
-      showCredential: true
-    },
-    {
-      name: 'CCNA: Switching, Routing, and Wireless Essentials',
-      issuer: 'Cisco',
-      year: 'abr. 2024',
-      credentialUrl: 'https://www.credly.com/badges/c072c1ef-d945-4cd3-8b02-fb28cbe2092d',
-      showCredential: true
-    },
-    {
-      name: 'CCNA: Introduction to Networks',
-      issuer: 'Cisco',
-      year: 'ago. 2023',
-      credentialUrl: 'https://www.credly.com/badges/58e4f516-bd3d-4d99-b954-dad8c739ce5c',
-      showCredential: true
-    },
-    {
-      name: 'Desarrollador Front-end',
-      issuer: 'Capacitate para el Empleo',
-      year: 'mar. 2025',
-      credentialId: 'a0d77b50-9797-4f68-83d1-c9023522df4d',
-      credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/a0d77b50-9797-4f68-83d1-c9023522df4d',
-      showCredential: true
-    },
-    {
-      name: 'Administrador de bases de datos',
-      issuer: 'Capacitate para el Empleo',
-      year: 'jun. 2024',
-      credentialId: 'b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
-      credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/b4b2d6f3-06a3-4c14-94cf-a032de0afd53',
-      showCredential: true
-    },
-    {
-      name: 'Programador en C#',
-      issuer: 'Capacitate para el Empleo',
-      year: 'jul. 2023',
-      credentialId: '3face53e-609b-4e83-beae-771c6a397178',
-      credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/3face53e-609b-4e83-beae-771c6a397178',
-      showCredential: true
-    },
-    {
-      name: 'Introducción a la programación',
-      issuer: 'Capacitate para el Empleo',
-      year: 'nov. 2022',
-      credentialId: '0027b518-415c-484a-999b-03383f857714',
-      credentialUrl: 'https://capacitateparaelempleo.org/verifica/94033fd4-3605-4c37-8344-c68998d5004f/0027b518-415c-484a-999b-03383f857714',
-      showCredential: true
-    },
-    {
-      name: 'Curso de Desarrollo de Apps Móviles',
-      issuer: 'Google Actívate',
-      year: 'mar. 2022',
-      credentialId: '181543318',
-      credentialUrl: 'https://skillshop.exceedlms.com/student/award/nyUNcwm2r8ShePozpdpLgiGt',
-      showCredential: true
-    },
-  ];
-
-  const skillCategories = [
-    {
-      title: "Lenguajes de Programación",
-      skills: [
-        { name: "JavaScript", icon: JavaScriptIcon },
-        { name: "TypeScript", icon: TypeScriptIcon },
-        { name: "PHP", icon: PHPIcon },
-        { name: "Java", icon: JavaIcon },
-        { name: "C#", icon: CSharpIcon },
-        { name: "Python", icon: PythonIcon },
-        { name: "SQL", icon: SQLIcon }
-      ]
-    },
-    {
-      title: "Librerías y Frameworks",
-      skills: [
-        { name: "React", icon: ReactIcon },
-        { name: "React Native", icon: ReactNativeIcon },
-        { name: "Node.js", icon: NodeIcon },
-        { name: "Express", icon: ExpressIcon },
-        { name: "Prisma", icon: PrismaIcon }
-      ]
-    },
-    {
-      title: "Bases de datos",
-      skills: [
-        { name: "SQL Server", icon: SQLServerIcon },
-        { name: "MySQL", icon: MySQLIcon },
-        { name: "Mongo", icon: MongoIcon },
-        { name: "Oracle Cloud", icon: OracleIcon },
-        { name: "Supabase", icon: SupabaseIcon },
-      ]
-    },
-    {
-      title: "Otras tecnologías",
-      skills: [
-        { name: "GitHub", icon: GitHubIcon },
-        { name: "Git", icon: GitIcon },
-        { name: "Postman", icon: PostmanIcon },
-        { name: "Bitbucket", icon: BitbucketIcon }
-      ]
-    }
-  ];
-
-  const handleShowCredential = (cert: any) => {
+  const handleShowCredential = (cert: CertificationBase, name: string) => {
     if (cert.credentialUrl) {
       window.open(cert.credentialUrl, '_blank', 'noopener,noreferrer');
     } else {
-      setSelectedCertification(cert);
+      setSelectedCertification({ ...cert, name });
     }
   };
 
@@ -157,7 +174,7 @@ const About: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Sobre <span className="text-blue-400">mí</span>
+          {t.about.heading.pre}<span className="text-blue-400">{t.about.heading.highlight}</span>
         </motion.h2>
 
         <div className="flex flex-col md:flex-row gap-12 mb-20">
@@ -168,24 +185,13 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-2xl font-semibold mb-4">Mi trayectoria</h3>
+            <h3 className="text-2xl font-semibold mb-4">{t.about.journeyTitle}</h3>
 
-            <p className="text-slate-300 mb-6">
-              Soy egresado de Ingeniería en Sistemas Computacionales por la Universidad Politécnica de Tulancingo,
-              con formación como Técnico en Programación y experiencia en el desarrollo de aplicaciones web,
-              principalmente en el área de backend.
-            </p>
-
-            <p className="text-slate-300 mb-6">
-              Me especializo en el desarrollo de APIs y sistemas para la gestión de información utilizando tecnologías
-              como Node.js, Express y bases de datos relacionales. He trabajado en la implementación de lógica de negocio,
-              control de accesos y soluciones orientadas a entornos reales, priorizando la seguridad y la eficiencia.
-            </p>
-
-            <p className="text-slate-300">
-              Busco integrarme a un equipo donde pueda seguir creciendo como desarrollador backend, aportar soluciones
-              robustas y escalables, y continuar fortaleciendo mis habilidades en el desarrollo de sistemas.
-            </p>
+            {t.about.paragraphs.map((paragraph, index) => (
+              <p key={index} className={`text-slate-300 ${index < t.about.paragraphs.length - 1 ? 'mb-6' : ''}`}>
+                {paragraph}
+              </p>
+            ))}
           </motion.div>
 
           <motion.div
@@ -195,20 +201,16 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-2xl font-semibold mb-6">Formación Académica</h3>
+            <h3 className="text-2xl font-semibold mb-6">{t.about.academicTitle}</h3>
 
             <div className="space-y-6">
-              <div className="bg-slate-800/50 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-semibold">Ingeniería en Sistemas Computacionales</h4>
-                <p className="text-slate-300">Universidad Politécnica de Tulancingo</p>
-                <p className="text-slate-400 text-sm">Egresado</p>
-              </div>
-
-              <div className="bg-slate-800/50 p-4 rounded-lg">
-                <h4 className="text-blue-400 font-semibold">Técnico en Programación</h4>
-                <p className="text-slate-300">Centro de Bachillerato Tecnológico Industrial y de Servicio No. 179</p>
-                <p className="text-slate-400 text-sm">Completado</p>
-              </div>
+              {t.about.academic.map((entry, index) => (
+                <div key={index} className="bg-slate-800/50 p-4 rounded-lg">
+                  <h4 className="text-blue-400 font-semibold">{entry.degree}</h4>
+                  <p className="text-slate-300">{entry.school}</p>
+                  <p className="text-slate-400 text-sm">{entry.status}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -222,10 +224,10 @@ const About: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            <span className="text-blue-400">Habilidades</span> Técnicas
+            <span className="text-blue-400">{t.about.skillsHeading.highlight}</span>{t.about.skillsHeading.post}
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -236,15 +238,10 @@ const About: React.FC = () => {
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 whileHover={{
                   scale: 1.02,
-                  rotateY: 5,
                   boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.2)"
                 }}
-                style={{
-                  transformStyle: 'preserve-3d',
-                  perspective: '1000px'
-                }}
               >
-                <h4 className="text-xl font-semibold text-blue-400 mb-4">{category.title}</h4>
+                <h4 className="text-xl font-semibold text-blue-400 mb-4">{t.about.skillCategories[categoryIndex]}</h4>
                 <ul className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.li
@@ -256,11 +253,15 @@ const About: React.FC = () => {
                       transition={{ duration: 0.3, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
                     >
                       <div className="w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center mr-3">
-                        <img
-                          src={skill.icon}
-                          alt={skill.name}
-                          className="w-5 h-5 object-contain"
-                        />
+                        {typeof skill.icon === 'string' ? (
+                          <img
+                            src={skill.icon}
+                            alt={skill.name}
+                            className="w-5 h-5 object-contain"
+                          />
+                        ) : (
+                          <skill.icon className="w-5 h-5" style={skill.color ? { color: skill.color } : undefined} />
+                        )}
                       </div>
                       <span className="text-sm">{skill.name}</span>
                     </motion.li>
@@ -279,7 +280,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            Certific<span className="text-blue-400">aciones</span>
+            {t.about.certificationsHeading.pre}<span className="text-blue-400">{t.about.certificationsHeading.highlight}</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -304,7 +305,7 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
-                      {cert.name}
+                      {t.about.certificationNames[index]}
                     </h4>
                     <p className="text-blue-400 text-sm">{cert.issuer}</p>
                     {cert.credentialId && (
@@ -318,11 +319,11 @@ const About: React.FC = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleShowCredential(cert);
+                        handleShowCredential(cert, t.about.certificationNames[index]);
                       }}
                       className="text-blue-400 hover:text-blue-300 text-sm flex items-center transition-colors group-hover:underline"
                     >
-                      Ver credencial
+                      {t.about.viewCredential}
                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
@@ -344,7 +345,7 @@ const About: React.FC = () => {
               exit={{ opacity: 0, scale: 0.9 }}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold text-white">Credencial de {selectedCertification.name}</h3>
+                <h3 className="text-xl font-bold text-white">{t.about.modal.titlePrefix}{selectedCertification.name}</h3>
                 <button
                   onClick={closeModal}
                   className="text-slate-400 hover:text-white transition-colors"
@@ -356,10 +357,10 @@ const About: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <p><span className="text-blue-400 font-medium">Emisor:</span> {selectedCertification.issuer}</p>
-                <p><span className="text-blue-400 font-medium">Año:</span> {selectedCertification.year}</p>
+                <p><span className="text-blue-400 font-medium">{t.about.modal.issuerLabel}</span> {selectedCertification.issuer}</p>
+                <p><span className="text-blue-400 font-medium">{t.about.modal.yearLabel}</span> {selectedCertification.year}</p>
                 {selectedCertification.credentialId && (
-                  <p><span className="text-blue-400 font-medium">ID de credencial:</span> {selectedCertification.credentialId}</p>
+                  <p><span className="text-blue-400 font-medium">{t.about.modal.idLabel}</span> {selectedCertification.credentialId}</p>
                 )}
               </div>
 
@@ -368,14 +369,14 @@ const About: React.FC = () => {
                   onClick={closeModal}
                   className="px-4 py-2 text-slate-300 hover:text-white transition-colors"
                 >
-                  Cerrar
+                  {t.about.modal.close}
                 </button>
                 {selectedCertification.credentialUrl && (
                   <button
                     onClick={() => window.open(selectedCertification.credentialUrl, '_blank', 'noopener,noreferrer')}
                     className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
                   >
-                    Ver en sitio oficial
+                    {t.about.modal.viewOfficial}
                   </button>
                 )}
               </div>
