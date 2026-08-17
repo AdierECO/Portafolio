@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { NavigationItem } from '../types';
@@ -6,8 +6,23 @@ import { useLanguage } from '../context/useLanguage';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const navigate = useNavigate();
   const { language, toggleLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY.current;
+      const shouldHide = scrollingDown && currentScrollY > 100;
+      setIsHidden(shouldHide);
+      if (shouldHide) setIsOpen(false);
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigationItems: NavigationItem[] = [
     { name: t.nav.home, href: '/', target: '_self' },
@@ -26,11 +41,11 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <motion.nav 
+    <motion.nav
       className="fixed top-0 w-full z-50 py-6 bg-transparent"
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      animate={{ y: isHidden ? '-100%' : 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <motion.div 
